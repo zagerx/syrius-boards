@@ -47,6 +47,10 @@
 			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
 			label = "User LD5";
 		};
+		stopbutton:led_5{
+			gpios = <&gpiod 4 GPIO_ACTIVE_HIGH>;
+			label = "User LD6";
+		};		
 	};
 
 	aliases {
