@@ -27,23 +27,6 @@
 			label = "User LD2";
 		};
 	};
-    motors {
-        motor1: motor_1 {
-            compatible = "motor-bldc";
-            control-algorithm = <&foc1>;
-            status = "okay";
-        };
-    };
-	control_algorithm {
-		foc1:ctrl_algo1{
-			compatible = "foc-ctrl-algo";
-			currsmp = <&currsmp1>;
-			pwm = <&pwm1>;
-			feedback = <&abz_hall2>;
-			modulate = <1>;
-			status = "okay";
-		};
-	};	
 	aliases {
 		led0 = &green_led;
 		mcuboot-led0 = &green_led;
@@ -138,38 +121,4 @@ stm32_lp_tick_source: &lptim1 {
 	};
 };
 
-&timers1 {
-    pwm1: pwm {
-        compatible = "st,stm32-pwm-custom";
-        pinctrl-0 = <&tim1_ch1_pe9  &tim1_ch1n_pe8
-                    &tim1_ch2_pe11 &tim1_ch2n_pe10
-                    &tim1_ch3_pe13 &tim1_ch3n_pe12>;
-        pinctrl-names = "default";
-        timing-params = <120 13750 0>;  // t_dead_ns, arr, psc
-        slave = <0>;
-        status = "okay";
-    };
-};
-&adc1 {
-	currsmp1: currsmp {
-		compatible = "st,stm32-currsmp-shunt";
-		pinctrl-0 = <&adc1_inp16_pa0  &adc1_inp17_pa1 &adc1_inp14_pa2>;
-		pinctrl-names = "default";
-		adc-channels = <16 17 14>;
-		adc-slave = <0>;
-		status = "okay";
-	};
-};
-&timers3 {
-	abz_hall1: abz_hall {
-		compatible = "st,stm32-abz-hall";
-		pinctrl-0 = <&tim3_ch1_pb4 &tim3_ch2_pb5>;
-		pinctrl-names = "default";
-		lines = <4096>;
-		pole-pairs = <15>;
-		hu-gpios = <&gpiod 1 GPIO_ACTIVE_HIGH>;
-		hv-gpios = <&gpiob 2 GPIO_ACTIVE_HIGH>;
-		hw-gpios = <&gpiod 0 GPIO_ACTIVE_HIGH>;
-		status = "okay";
-	};
-};
+
