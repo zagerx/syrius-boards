@@ -1,0 +1,6 @@
+board:
+  name: zgm_003 
+  full_name: Nucleo G474RE
+  vendor: st
+  socs:
+    - name: stm32g474xx
