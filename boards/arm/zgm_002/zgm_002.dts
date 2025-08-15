@@ -27,6 +27,8 @@
 
 	leds: leds {
 		compatible = "gpio-leds";
+		
+
 		green_led: led_0 {
 			gpios = <&gpioe 1 GPIO_ACTIVE_HIGH>;
 			label = "User LD1";
@@ -50,7 +52,11 @@
 		stopbutton:led_5{
 			gpios = <&gpiod 4 GPIO_ACTIVE_HIGH>;
 			label = "User LD6";
-		};		
+		};
+		run_led: led_6 {
+			gpios = <&gpio_exp0 9 GPIO_ACTIVE_HIGH>;
+			label = "User LD7";
+		};	
 	};
 
 	aliases {
@@ -254,4 +260,12 @@
 		vshunt-conversion-time-us = <1100>;
 		operating-mode = "Shunt and Bus, Continuous";
 	};
+	gpio_exp0: tca9539@74 {
+		compatible = "ti,tca9539";
+		reg = <0x74>;
+		gpio-controller;
+		#gpio-cells = <2>;
+		ngpios = <16>;
+		status = "okay";
+	};	
 };
